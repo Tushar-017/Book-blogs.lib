@@ -1,39 +1,63 @@
-## Oh Yes! Big O notation
+# Chapter 3: Big O Notation
 
-- **Time complexity of Big O** - It has nothing to do with how much time a particular algorithm going to take.
-- **Big O of N** - deals with how much steps(N steps etc.) a particular algorithm take
+Big O does not measure exact clock time.
 
-#### If there are N data elements how many steps an algorithm going to take?
+It measures how the number of **steps** grows as input size `N` grows.
 
-### O(1)- Constant Time (fastest)
+> Main question: if there are `N` data elements, how many steps will the algorithm need?
 
-- Big O of N literally say it has no dependency on the N data elements
+---
 
-#### The sole reason of Big O is how the algorithm will perform when the data grows
+## Why Big O Matters
 
-### O(N) - eg. - linear search
+Big O gives us a consistent way to compare algorithms as data scales.
 
-- number of steps are directly proportional to the N data elements
+Two algorithms might look similar on small input, but their growth can be very different on large input.
 
-- _O(100) is more efficient O(N)_
+---
 
-### O(log N) - eg. - Binary search
+## Common Growth Rates
 
-**LOGARITHM**
+### `O(1)` - Constant Time
 
-- Q. What is log anyway?
-- A. A log is an inverse of exponential
+The number of steps does not depend on `N`.
 
-- 2^3 = 2 _ 2 _ 2
-- log 8 => 8/2 => 4/2 => 2/2 => 1 (log2 8 means how many times you have to divide it by two to get 1)
+### `O(N)` - Linear Time
 
-| N Elements | O(1) | O(N)      | O(log N) |
-| ---------- | ---- | --------- | -------- |
-| 10         | 1    | 10        | 3        |
-| 100        | 1    | 100       | 7        |
-| 1,000      | 1    | 1,000     | 10       |
-| 10,000     | 1    | 10,000    | 13       |
-| 100,000    | 1    | 100,000   | 17       |
-| 1,000,000  | 1    | 1,000,000 | 20       |
+The number of steps grows directly with `N`.
 
-_With Big O Notation, we have a consistent system which alow us to compare two algorithms_
+Example: linear search.
+
+### `O(log N)` - Logarithmic Time
+
+The search space is repeatedly cut in half.
+
+Example: binary search.
+
+---
+
+## Quick Logarithm Intuition
+
+Log is the inverse of exponentiation.
+
+- `2^3 = 8`
+- `log2(8) = 3`
+
+Another way to think about `log2(8)`:
+
+`8 -> 4 -> 2 -> 1` (divide by 2 three times)
+
+---
+
+## Step Comparison Table
+
+| N elements | O(1) |      O(N) | O(log N) |
+| ---------- | ---: | --------: | -------: |
+| 10         |    1 |        10 |        3 |
+| 100        |    1 |       100 |        7 |
+| 1,000      |    1 |     1,000 |       10 |
+| 10,000     |    1 |    10,000 |       13 |
+| 100,000    |    1 |   100,000 |       17 |
+| 1,000,000  |    1 | 1,000,000 |       20 |
+
+As `N` grows, the gap becomes dramatic. That is why Big O is so useful.

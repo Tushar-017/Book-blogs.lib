@@ -1,46 +1,54 @@
-### The organization of data does't just matter for organizational sake, but can significantly impact how fast your code run.
+# Chapter 1: Why Data Structure Matters
 
-- Array & Set (appear same but)
-- O -> Big O! Notation.
+How data is organized can dramatically change how fast your code runs.
 
-**NOTE:**
+Two structures can look similar, but behave very differently when reading, searching, inserting, or deleting data.
 
-- _Measure Speed of an operation : Speed in terms of step not as per the time. Because the time can change as per the quality of the hardware._
+> We measure performance in **steps**, not clock time, because hardware speed can vary.
 
-### Array: The foundational DS
+---
 
-- Whenever a computer allocates an array. It also make a note at which memory address the array begins. (memory address and index are different concept.)
-- technical jargon
-  - size of the Array -> n
-  - index of an array -> (0- (n-1) range)
+## Array: The Foundational Data Structure
 
-- ##### Array operations
-- **Read** - lookup can take just 1 step via index
-- **Search** - lookup every cell until find the value - linear search[O(N) - steps](alt efficient algos)
-- **Insert** - At where: (add and shit shift)
-  1. inserting an element at end - 1 step (best case)
-  2. inserting somewhere at the middle or beginning - (N + 1) steps - O(N) (worst case)
+When a computer allocates an array, it records the starting memory address.
+That is why arrays support very fast index-based access.
 
-- **Delete** - Which index: (remove and shift to close the gap)
-  1. delete last index - 1 step (best case)
-  2. delete somewhere at the middle or beginning - (N(shift) + 1) steps - O(N)
+- Array size: `n`
+- Valid index range: `0` to `n - 1`
 
-**NOTE:**
+### Core Operations on Arrays
 
-- _Fact about computer - computer has immediate access to all the memory address but have no idea about what value they store before hand._
+| Operation             | How it works                           | Typical cost |
+| --------------------- | -------------------------------------- | ------------ |
+| Read                  | Access by index                        | `O(1)`       |
+| Search                | Check cells one by one (linear search) | `O(N)`       |
+| Insert (end)          | Add to next free slot                  | `O(1)`       |
+| Insert (middle/start) | Shift elements, then insert            | `O(N)`       |
+| Delete (end)          | Remove last element                    | `O(1)`       |
+| Delete (middle/start) | Delete and shift to close gap          | `O(N)`       |
 
-### Sets: how single rule can affect the efficiency
+> Computers can access memory addresses quickly, but they do not automatically know what value is stored where.
 
-A set is a DS(just like array in this case) that does not allow duplicates within it.
+---
 
-- ##### Set operations
-- **Read** - lookup can take just 1 step via index(\*_same as array_)
-- **Search** - lookup every cell until find the value - linear search[O(N) - steps](alt efficient algos)(\*_same as array_)
-- **Insert** - At where: (add and shit shift)
-  <ins>1st step</ins> -> _Search_ the array(N steps) for not already present value, then following:
-  1. inserting an element at end - 1 step (best case)
-  2. inserting somewhere at the middle or beginning - (2N + 1) steps - O(N) (worst case)
+## Set: One Rule Changes the Cost
 
-- **Delete** - Which index: (remove and shift to close the gap)(\*_same as array_)
-  1. delete last index - 1 step (best case)
-  2. delete somewhere at the middle or beginning - (N(shift) + 1) steps - O(N)
+A set (in this context) is like an array, but it does **not** allow duplicates.
+
+That single rule changes insertion behavior:
+
+1. First, search to confirm the value is not already present.
+2. Then insert (and shift if needed).
+
+### Core Operations on Sets
+
+| Operation             | How it works            | Typical cost |
+| --------------------- | ----------------------- | ------------ |
+| Read                  | Access by index         | `O(1)`       |
+| Search                | Linear search           | `O(N)`       |
+| Insert (end)          | Search + insert         | `O(N)`       |
+| Insert (middle/start) | Search + shift + insert | `O(N)`       |
+| Delete (end)          | Remove last element     | `O(1)`       |
+| Delete (middle/start) | Delete and shift        | `O(N)`       |
+
+In short, sets trade insertion speed for uniqueness guarantees.
